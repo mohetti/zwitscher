@@ -1,0 +1,12 @@
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endofline": "auto"
+      }
+    ]
+  },
+  "extends": ["plugin:prettier/recommended"]
+}
