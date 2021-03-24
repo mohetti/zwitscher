@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import app, { auth } from '../../firebase';
+import app, { auth, storage } from '../../firebase';
 import { Card, Form, Button, Container, Alert } from 'react-bootstrap';
 
 const SignUp = (props) => {
@@ -24,17 +24,19 @@ const SignUp = (props) => {
       .then((userCredential) => {
         const user = userCredential.user;
         const uid = user.uid;
-        const follower = [];
+        const following = [];
         const followedBy = [];
         const name = userNameRef.current.value;
         const msg = true;
         const messages = [];
+        const img = '';
         const email = emailRef.current.value;
 
         props.toggelLoggedStatus();
         props.storeCurrentUser(user);
 
-        const account = { uid, name, follower, followedBy, email };
+        const account = { uid, name, following, followedBy, email, img };
+        console.log(account);
         const msgObj = { messages };
         app.firestore().collection('messages').doc(uid).set(msgObj);
 

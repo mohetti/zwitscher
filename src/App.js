@@ -10,8 +10,6 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import app, { auth } from './firebase';
-//const ref = firebase.firestore().collection("COLLECTION");
-//const db = firebase.firestore();
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

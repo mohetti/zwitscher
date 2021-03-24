@@ -25,16 +25,16 @@ function Messages(props) {
         setErrorMsg('');
       }, 2000);
     } else {
-      const storeMsgTarget = app
-        .firestore()
-        .collection('messages')
-        .doc(props.currentUser.uid);
-      storeMsgTarget.update({
-        messages: firebase.firestore.FieldValue.arrayUnion({
-          msg: msgRef.current.value,
-          timeStamp: firebase.database.ServerValue.TIMESTAMP,
-        }),
+      const storeMsgTarget = app.firestore().collection('messages');
+
+      const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+      storeMsgTarget.add({
+        createdAt: timestamp(),
+        msg: msgRef.current.value,
+        uid: props.currentPerson.uid,
       });
+
       msgRef.current.value = '';
     }
   }
